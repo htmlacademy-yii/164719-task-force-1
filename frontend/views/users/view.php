@@ -52,7 +52,7 @@ $this->title = Html::encode($detail->user->name);
                         <?php
                         //  показывает, когда не выбрано ни одной категории в настройках акк пользователя
                         // когда чекбокс показывать только заказчику (заказчик - пользователь, у которого не выбрано ни одной категории)
-                        if ($detail->siteSettings->show_contacts_client AND !count($detail->userCategories)):?>
+                        if ($detail->siteSettings->show_contacts_client && !count($detail->userCategories)):?>
                         <div class="user__card-link">
                             <a class="user__card-link--tel link-regular" href="#"><?= $detail->phone?></a>
                             <a class="user__card-link--email link-regular" href="#"><?= $detail->user->email?></a>
@@ -64,7 +64,7 @@ $this->title = Html::encode($detail->user->name);
                         <h3 class="content-view__h3">Фото работ</h3>
 
                         <?php foreach ($detail->portfolioPhoto as $item):?>
-                            <a href="<?= $item->url;?>"><img src="<?= $item->url;?>" width="85" height="86" alt="<?= $item->title;?>"></a>
+                            <a href="<?= $item->url;?>"><img src="<?= $item->url;?>" width="85" height="86" alt="<?= Html::encode($item->title);?>"></a>
                         <?php endforeach;?>
                     </div>
                 </div>
@@ -79,13 +79,13 @@ $this->title = Html::encode($detail->user->name);
                 <div class="content-view__feedback-wrapper reviews-wrapper">
                     <?php foreach ($detail->review as $item):?>
                     <div class="feedback-card__reviews">
-                        <p class="link-task link">Задание <a href="<?= Url::to(['./task/view/'. $item->task->id])?>" class="link-regular">«<?= $item->task->name?>»</a></p>
+                        <p class="link-task link">Задание <a href="<?= Url::to(['./task/view/'. $item->task->id])?>" class="link-regular">«<?= Html::encode($item->task->name)?>»</a></p>
                         <div class="card__review">
                             <a href="<?= Url::to(['./user/view/'. $item->userInfo->user_id])?>"><img src="<?= $item->userInfo->user_pic?>" width="55" height="54"></a>
                             <div class="feedback-card__reviews-content">
                                 <p class="link-name link"><a href="<?= Url::to(['./user/view/'. $item->userInfo->user_id])?>" class="link-regular"><?= Html::encode($item->user->name);?></a></p>
                                 <p class="review-text">
-                                    <?= $item->description;?>
+                                    <?= Html::encode($item->description);?>
                                 </p>
                             </div>
                             <div class="card__review-rate">
